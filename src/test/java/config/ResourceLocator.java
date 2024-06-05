@@ -1,5 +1,6 @@
 package config;
 
+import automationtests.testingautomationtests.ResourceLocatorExamplesTest;
 import com.bottlerocket.config.*;
 import com.bottlerocket.webdriverwrapper.uiElementLocator.*;
 import io.appium.java_client.AppiumBy;
@@ -11,7 +12,7 @@ import org.openqa.selenium.*;
  * This class keeps all constants (names, key values, resource locations, etc.) which Appium needs either to find a resource or send a command to the device
  * <p>
  * <p>
- * {@link automationtests.testingautomationtests.ResourceLocatorExamples Test with example usage}
+ * {@link ResourceLocatorExamplesTest Test with example usage}
  * <p>
  * Created by ford.arnett on 8/31/15.
  */

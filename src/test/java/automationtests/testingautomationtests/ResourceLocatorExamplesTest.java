@@ -9,7 +9,7 @@ import java.net.*;
 
 import static config.ResourceLocator.*;
 
-public class ResourceLocatorExamples extends TestMain {
+public class ResourceLocatorExamplesTest extends TestMain {
 
     /*
     QUICK UI Test to display ResourceLocator usage
