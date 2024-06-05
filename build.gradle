@@ -1,0 +1,132 @@
+plugins {
+    // id "org.gradle.test-retry" version "1.1.5"
+    id "java"
+    // id "io.qameta.allure" version "2.8.1"
+}
+
+def testRoot = "src/test/automationtests"
+
+group = 'bottlerocketstuidos.automation'
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = 15
+targetCompatibility = 15
+
+repositories {
+    mavenCentral()
+    maven {
+        url "file://Volumes/Builds/qa/automation/maven-repository/snapshots"
+    }
+    maven {
+        url "file://Volumes/Builds/qa/automation/maven-repository/releases"
+    }
+    //To get the framework grab it from the server and stick it in your ~/.m2 (make sure to put it in the appropriate folder with the correct structure)
+    //Or more easily, run the gradle task in the framework publishAutomationLibraryPublicationToMavenLocal
+    mavenLocal()
+    //This is another option to use for local maven, uncomment below. This will take the framework from whatever folder you want to put it in.
+    //maven { url "path to maven repo" }
+
+    flatDir {
+        dirs "file://${projectDir}/framework_snapshots/"
+    }
+
+}
+
+ext {
+    //TODO Change to value in appconfig.properties
+    projectName = "DEFINE_PROJECT_NAME_HERE_MAKE_IT_MATCH_APPCONFIG_PROPERTIES"
+}
+
+test {
+    String operatingSystem = project.project.ext.properties.operatingsystem
+
+    if (operatingSystem != null) {
+        systemProperty "automation." + (String) projectName + ".operatingsystem", project.getProperty("operatingsystem")
+        println("There was an OS passed to gradle with the value: " + operatingSystem)
+    } else {
+        Properties props = new Properties()
+        props.load(new FileInputStream((String) getProjectDir() + "/src/main/resources/appconfig.properties"))
+        operatingSystem = props.get("PLATFORM_NAME")
+        println("No operating system passed through gradle. Previously set operating system will be used.")
+    }
+
+    String date = project.project.ext.properties.date
+
+    if (date != null) {
+        println("Using passed in gradle date for report location with the value: " + date)
+    } else {
+        date = getDate() + "/" + getTimeOfDay()
+    }
+
+    String folderBase = "../automation_test_results/" + (String) projectName + "_" + operatingSystem + "/"
+    String uniqueFolder = folderBase + date //+ "_" + project.gradle.startParameter.taskNames
+
+    useTestNG {
+        useDefaultListeners = true
+        //Use the unique name and the task name to create the folder
+        //reports.html.destination = file(uniqueFolder)
+    }
+
+    String deviceID = project.project.ext.properties.deviceid
+
+    //Set these properties if they exist
+    if (deviceID != null) {
+        systemProperty "automation." + (String) projectName + ".deviceid", project.getProperty("deviceid")
+        println("There was a device ID passed to gradle with the value: " + deviceID)
+    }
+
+    String port = project.project.project.ext.properties.port
+    if (port != null) {
+        systemProperty "automation." + (String) projectName + ".port", project.getProperty("port")
+        println("There was a port passed to gradle with the value: " + port)
+    }
+
+    String browserName = project.project.ext.properties.browser
+    if (browserName != null) {
+        systemProperty "automation." + (String) projectName + ".browser", project.getProperty("browser")
+        println("Using passed in gradle browser for running with the value: " + browserName)
+    }
+    systemProperty "automation." + (String) projectName + ".uniquefolder", uniqueFolder
+    systemProperty "automation." + (String) projectName + ".usegradlevalues", "true"
+
+    // listen to events in the test execution lifecycle
+    beforeTest { descriptor ->
+        logger.lifecycle("Running test: " + descriptor)
+    }
+
+    // listen to standard out and standard error of the test JVM(s)
+    onOutput { descriptor, event ->
+        logger.lifecycle("Test: " + descriptor + " logged: " + event.message)
+    }
+}
+
+static def getTimeOfDay() {
+    def date = new Date()
+    def formattedDate = date.format('HH_mm_ss_a')
+    return formattedDate
+}
+
+static def getDate() {
+    def date = new Date()
+    def month = date.format('MMMM_yy')
+    def day = date.format('d')
+    return month + "/" + day
+}
+
+
+dependencies {
+    implementation 'org.testng:testng:7.7.0'
+
+    //active development framework
+    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.0-SNAPSHOT'
+    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.0-SNAPSHOT-sources'
+
+    //stable release framework
+    //implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '2.2-RELEASE'
+    //implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '2.2-RELEASE-sources'
+
+    implementation group: 'io.appium', name: 'java-client', version: '8.1.1'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.2.2'
+    // https://mvnrepository.com/artifact/com.relevantcodes/extentreports
+    implementation group: 'com.aventstack', name: 'extentreports', version: '4.0.5'
+}

@@ -1,0 +1,3 @@
+inventoryPage
+	Log in was successful and currently on product listing page
+	Verify First Product Price is $29.99

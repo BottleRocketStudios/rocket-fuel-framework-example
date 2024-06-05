@@ -1,0 +1,102 @@
+# -----CI/CD SETUP with GITHUB ACTIONS
+
+# Github Actions are triggered by events that are defined in a github actions yml that is in .github/workflows/ directory of the project
+# (yml must be located in project at .github/workflows/, this is where github expects the yml to be if it exists)
+#  ** create directory in root of project folder for your github actions yml ex.. .github/workflows/main.yml for a github workflow yml named main.yml
+# for more information on GitHub Actions: https://docs.github.com/en/actions/quickstart
+
+
+# Give this job a name
+name: CI
+
+# configure event triggers for the workflow to control when the job will run
+# Triggers the workflow on push or pull request events but only for the "dev" branch
+on:
+  push:
+    branches: [ "dev" ]
+  pull_request:
+    branches: [ "dev" ]
+  # Uses Cron to schedule job 'min hour day month yr' this job will run on the 15th minute of the 6th hour of every day
+  schedule:
+    - cron: '15 6 * * *'
+
+  # adding a Workflow_dispatch event allows you to trigger the job from within the github actions tab on github
+  # Allows you to run this workflow manually from the Actions tab and defines an input named groups that can be used to trigger the job with an input parameter named groups
+  workflow_dispatch:
+    inputs:
+      groups:
+        description: 'Groups to Run'
+        default: ''
+        required: false
+
+  #  adding a Repository_dispatch event allows us to trigger a job remotely
+  # (When triggering a job remotely we can pass the job type)
+  repository_dispatch:
+    types: [ 'run-tests' ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel, If a job depends on another job, you must specify which
+# dependencies between jobs. All jobs without dependencies on other jobs will run in parallel with each other
+jobs:
+  # This workflow contains a single job called "Build"
+  Build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job (this job is broken up into several steps with unique names)
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # step 'Create report directory in github vm'
+      # create directory in github vm to function as temporary storage for report until it can be copied to github page
+      - name: Create report directory in github vm
+        run: mkdir extent_reports
+
+      # Alcon project requires Java 15, this step can be modified to use whatever version of Java your project requires
+      - name: Set up JDK 15
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 15
+
+      # logging source of event that triggered run
+      # Github gives standard variables to access and manage run/environment variables. see documentation at  https://docs.github.com/en/actions/learn-github-actions/contexts
+      # We can use the $github.event.name var to determine how the job was triggered (via schedule, remotely, or manually by the gha tab)
+      - name: get event
+        run: |
+          echo ${{ github.event_name }}
+          echo ${{ github.event }}
+
+      # We can use yaml language syntax to write some code to trigger the jobs in different ways depending on the input trigger
+      # If this job was triggered by any means other than remotely, it will run the automation using the manual input groups parameter
+      - name: gradle UI Test Automation Non-Remote Trigger
+        if: ${{ github.event_name != 'repository_dispatch' }}
+        # simply run your tests via gha run command follow by whatever you use to run your automation
+        # the github.event.inputs.groups variable here is passed to the event via the workflow_dispatch trigger
+        run: ./gradlew runTests -Dgroups=${{ github.event.inputs.groups }}
+
+      # if job event IS triggered by repository_dispatch (remotely) then it will run the automation with inputs defined in json payload that was sent via the remote call
+      - name: gradle UI Test Automation Remote Trigger
+        if: ${{ github.event_name == 'repository_dispatch' }}
+        # the github.event.client_payload.groups variable contains the parameters sent with the POST request to trigger this remote dispatch event
+        run: ./gradlew runTests -Dgroups=${{ github.event.client_payload.groups }}
+
+      # Deploy Report to github page:
+      # (Github allows users to have 1 github page per repository, this action will search the specified file path on the specified branch for a
+      # a file named index.html, index.html is the name of the extent report in this case and the branch to use as a deployment branch is sauceReporter and the
+      # index.html file (the extent report) is located in the root of project/extent_reports/ subdirectory)
+      - name: Deploy report to github page
+        if: always()
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: sauceReporter
+          folder: extent_reports
+
+      # Save artifacts for each run:
+      # Action that uploads folder specified from file path specified, in this case the extent_report folder in extent_reports file path is uploaded and saved as an artifact
+      - name: Upload Artifact GitHub Action
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: extent_report
+          path: extent_reports
