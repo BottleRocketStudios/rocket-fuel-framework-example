@@ -12,7 +12,10 @@ that [here](https://github.com/BottleRocketStudios/rocket-fuel-framework/blob/ma
 - [Lifting off (Getting your first run)](#lifting-off-getting-your-first-run)
     - [Practice with an Example Test](#practice-with-an-example-test)
         - [Creating Your Own Test](#creating-your-own-test)
-            - [Create your own assertion](#create-your-assertion)
+            - [Create a new test class](#create-a-new-test-class)
+            - [Decide on a test case](#decide-on-a-test-case)
+            - [Create your test method](#create-your-test-method)
+            - [Create your assertion](#create-your-assertion)
         - [Creating a Project](#creating-a-project)
 - [Running Your Tests](#running-your-tests)
     - [Using an IDE](#using-an-ide)
@@ -185,50 +188,90 @@ guide](https://appium.io/docs/en/latest/quickstart/) for Android and/or iOS. If 
 using Appium previously, you might already have this setup. If you are starting with a web test, you can continue on
 with the setup you've already done.
 
-- Create a new test class
-    - You may want to make a template of this class in the future. There's a few common elements you may want to repeat.
-    - Name your test class something that makes sense for what you are testing. For example, if you are testing the
-      login
-      page, you might name your test class LoginTest. Try grouping your tests in packages that make sense and organized
-      by features.
-- Decide on a test case
-    - What are you testing? What is the expected outcome? What are the steps to get there? How can I quantify the
-      outcome?
-    - We recommend starting with login tests, as they are generally simple and can be used to test the basic
-      functionality
-      of your application.
-- Create your test method
-    - Name your test method something that makes sense for what you are testing. For example, if you are testing the
-      login
-      page, you might name your test method loginTest.
-    - In your test method, you will want to call the methods in your NavOps class to set up your test state, and then
-      call your assertion to verify the outcome.
-    - There's many ways to go about the individual steps, but we'll share the way that has worked for us. You might have
-      a different experience with a different IDE but the ideas
-      should be the same. We recommend writing the navOps as if it exits. For example, your first step might be writing
-      am.navOps.login.enterUsername("username");
-      even though it doesn't exist yet. Using refactor in IntelliJ, you can then create the method in the NavOps class.
-    - If you are using IntelliJ, you can right-click on the method name and select 'Refactor' -> 'Extract' -> 'Method'.
-      This will create a new method in the NavOps class with the name you selected. You can then fill in the method
-      with the code you want to run.
-        - If you are using another IDE, you can create the method manually in the NavOps class.
-    - To create your method we recommend setting a breakpoint and having your code run to the breakpoint. This will
-      allow you
-      to test the code you are writing in the evaluation window. If it works, you can break your code into a few navOps
-      methods.
-      If it doesn't work, you can make changes and try again.
-    - In your navOps methods you will want to use the driverWrapper to interact with the application. For example, if
-      you
-      are testing a login page, you might want to use the driverWrapper to enter a username and password, and then click
-      the login button.
-    - am.driverWrapper contains all the methods you need to interact with the application. You can find the full list of
-      methods in the `DriverWrapper` class.
-- Create your assertion
-  - 
+#### Create a new test class
+
+- You may want to make a template of this class in the future. There's a few common elements you may want to repeat.
+- Name your test class something that makes sense for what you are testing. For example, if you are testing the
+  login
+  page, you might name your test class LoginTest. Try grouping your tests in packages that make sense and organized
+  by features.
+
+#### Decide on a test case
+
+- What are you testing? What is the expected outcome? What are the steps to get there? How can I quantify the
+  outcome?
+- We recommend starting with login tests, as they are generally simple and can be used to test the basic
+  functionality
+  of your application.
+
+#### Create your test method
+
+- Name your test method something that makes sense for what you are testing. For example, if you are testing the
+  login
+  page, you might name your test method loginTest.
+- In your test method, you will want to call the methods in your NavOps class to set up your test state, and then
+  call your assertion to verify the outcome.
+- There's many ways to go about the individual steps, but we'll share the way that has worked for us. You might have
+  a different experience with a different IDE but the ideas
+  should be the same. We recommend writing the navOps as if it exits. For example, your first step might be writing
+  am.navOps.login.enterUsername("username");
+  even though it doesn't exist yet. Using refactor in IntelliJ, you can then create the method in the NavOps class.
+- If you are using IntelliJ, you can right-click on the method name and select 'Refactor' -> 'Extract' -> 'Method'.
+  This will create a new method in the NavOps class with the name you selected. You can then fill in the method
+  with the code you want to run.
+    - If you are using another IDE, you can create the method manually in the NavOps class.
+- To create your method we recommend setting a breakpoint and having your code run to the breakpoint. This will
+  allow you
+  to test the code you are writing in the evaluation window. If it works, you can break your code into a few navOps
+  methods.
+  If it doesn't work, you can make changes and try again.
+- In your navOps methods you will want to use the driverWrapper to interact with the application. For example, if
+  you
+  are testing a login page, you might want to use the driverWrapper to enter a username and password, and then click
+  the login button.
+- am.driverWrapper contains all the methods you need to interact with the application. You can find the full list of
+  methods in the `DriverWrapper` class.
+
+#### Create your assertion
+
+- Assertions allow you to verify the outcome of your test. You can use the `AssertionLibrary` and `AssertionPayload`
+  classes to create your assertion.
+- `AssertionLibrary` contains the assertions to verify the outcome of your test. You can find the full
+  list of assertions in the `AssertionLibrary` class.
+    - You can make your own assertions by creating a new method in the `AssertionLibrary` class. You can then call
+      this method in your test method.
+    - New assertions should take in an `AssertionPayload` object, which contains all the data needed for the
+      assertion. Based on the data given in the payload,
+      you should mark the test pass/fail, log the appropriate info on the report, and take a screenshot if needed.
+      You can take other actions as you see fit, but these are the minimum requirements.
+- When using an assertion, you will want to pass in an `AssertionPayload` object with the data needed for the
+  assertion.
+  You can then call the assertion method on the `AssertionLibrary` object and pass in the `AssertionPayload` object.
+- This will look similar to `am.assertions.generalAssertion(assertionPayload);`
+- `AssertionPayload` has several different constructors that you can use. You are also free to create your own
+  constructors if you need to, or create an object and add to it.
+    - We opted to use constructors in part to make it easier to create a fully initialized payload object in
+      short syntax.
+        - You are free to use the builder pattern for your `AssertionPayload` object if you prefer. This can make it
+          easier to create the object, just be careful you are either setting the default values as needed or
+          requiring them in the builder.
 
 ### Creating a Project
 
-Hopefully at this point
+Hopefully at this point you have a good idea of how to create a test.
+If you are still unsure, we recommend looking at [the getting started guide](#lifting-off-getting-your-first-run) or
+[ExerciseOneTestCase](src/test/java/example/ExerciseOneTestCase.java) for a full example of how to create a test.
+
+If you are ready to create your own project, you can with this repo. All the code under [example](src/test/java/example)
+is meant to show you
+how to use the framework. The rest of this project, is meant to be a template for you to create your own tests. You can
+set your config files in [resources](src/main/resources).
+The rest of the setup is a mirror of the example project. Tests go in
+the [automationtests](src/test/java/automationtests) package,
+operations go in the [operations](src/test/java/operations) package, and so on.
+
+For our internal projects, we use this template, clone it, create a new empty git history, and then start building our
+tests from there.
 
 ## Running Your Tests
 
