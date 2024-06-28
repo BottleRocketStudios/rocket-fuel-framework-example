@@ -26,9 +26,10 @@ repositories {
     //This is another option to use for local maven, uncomment below. This will take the framework from whatever folder you want to put it in.
     //maven { url "path to maven repo" }
 
-    flatDir {
-        dirs "file://${projectDir}/framework_snapshots/"
-    }
+//    flatDir {
+//        dirs "file://${projectDir}/framework_snapshots/"
+//    }
+    maven { url "file://${projectDir}/framework_snapshots/" }
 
 }
 
@@ -118,8 +119,8 @@ dependencies {
     implementation 'org.testng:testng:7.7.0'
 
     //active development framework
-    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.0-SNAPSHOT'
-    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.0-SNAPSHOT-sources'
+    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.1-SNAPSHOT'
+    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.1-SNAPSHOT-sources'
 
     //stable release framework
     //implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '2.2-RELEASE'
