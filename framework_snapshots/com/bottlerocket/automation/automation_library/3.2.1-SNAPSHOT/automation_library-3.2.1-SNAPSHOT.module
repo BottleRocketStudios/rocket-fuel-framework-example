@@ -1,0 +1,223 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.bottlerocket.automation",
+    "module": "automation_library",
+    "version": "3.2.1-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.7.1",
+      "buildId": "tdiaqejmknbs3fulsuml7t7q5y"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 15,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "automation_library-3.2.1-SNAPSHOT.jar",
+          "url": "automation_library-3.2.1-SNAPSHOT.jar",
+          "size": 478329,
+          "sha512": "ffea8e67a6fbe2c6510d05b411fc19c823430b5193a8a32ce5fd2b60fdac9765d6ef314b56be0c85793996fbab15e74454caa2d9e507b877a0ac26f3a27c3700",
+          "sha256": "d96a687fe6ca2dcf21b3c8246feba88d6ed72f22a7965380f77e6f94d6802cd8",
+          "sha1": "3741430a926d1890ea489e1c36db8971df166107",
+          "md5": "0c527f2a395f053cef08e76af9b6a873"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 15,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.codehaus.groovy",
+          "module": "groovy-all",
+          "version": {
+            "requires": "3.0.9"
+          }
+        },
+        {
+          "group": "org.testng",
+          "module": "testng",
+          "version": {
+            "requires": "7.7.1"
+          }
+        },
+        {
+          "group": "org.seleniumhq.selenium",
+          "module": "selenium-java",
+          "version": {
+            "requires": "4.2.2"
+          }
+        },
+        {
+          "group": "io.appium",
+          "module": "java-client",
+          "version": {
+            "requires": "8.1.1"
+          }
+        },
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "okhttp",
+          "version": {
+            "requires": "5.0.0-alpha.14"
+          }
+        },
+        {
+          "group": "org.apache.poi",
+          "module": "poi-ooxml",
+          "version": {
+            "requires": "5.2.5"
+          }
+        },
+        {
+          "group": "com.aventstack",
+          "module": "extentreports",
+          "version": {
+            "requires": "4.0.5"
+          }
+        },
+        {
+          "group": "org.apache.commons",
+          "module": "commons-lang3",
+          "version": {
+            "requires": "3.8.1"
+          }
+        },
+        {
+          "group": "commons-io",
+          "module": "commons-io",
+          "version": {
+            "requires": "2.9.0"
+          }
+        },
+        {
+          "group": "org.slf4j",
+          "module": "slf4j-api",
+          "version": {
+            "requires": "1.7.13"
+          }
+        },
+        {
+          "group": "com.monitorjbl",
+          "module": "xlsx-streamer",
+          "version": {
+            "requires": "2.1.0"
+          }
+        },
+        {
+          "group": "org.mock-server",
+          "module": "mockserver-core",
+          "version": {
+            "requires": "5.6.1"
+          }
+        },
+        {
+          "group": "org.mock-server",
+          "module": "mockserver-client-java",
+          "version": {
+            "requires": "5.6.1"
+          }
+        },
+        {
+          "group": "org.mock-server",
+          "module": "mockserver-netty",
+          "version": {
+            "requires": "5.6.1"
+          }
+        },
+        {
+          "group": "io.appium",
+          "module": "mitmproxy-java",
+          "version": {
+            "requires": "2.0.1"
+          }
+        },
+        {
+          "group": "com.mashape.unirest",
+          "module": "unirest-java",
+          "version": {
+            "requires": "1.4.9"
+          }
+        },
+        {
+          "group": "org.mongodb",
+          "module": "mongo-java-driver",
+          "version": {
+            "requires": "3.12.9"
+          }
+        },
+        {
+          "group": "com.squareup.retrofit2",
+          "module": "retrofit",
+          "version": {
+            "requires": "2.8.1"
+          }
+        },
+        {
+          "group": "com.squareup.retrofit2",
+          "module": "converter-jackson",
+          "version": {
+            "requires": "2.8.1"
+          }
+        },
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "logging-interceptor",
+          "version": {
+            "requires": "3.14.7"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "automation_library-3.2.1-SNAPSHOT.jar",
+          "url": "automation_library-3.2.1-SNAPSHOT.jar",
+          "size": 478329,
+          "sha512": "ffea8e67a6fbe2c6510d05b411fc19c823430b5193a8a32ce5fd2b60fdac9765d6ef314b56be0c85793996fbab15e74454caa2d9e507b877a0ac26f3a27c3700",
+          "sha256": "d96a687fe6ca2dcf21b3c8246feba88d6ed72f22a7965380f77e6f94d6802cd8",
+          "sha1": "3741430a926d1890ea489e1c36db8971df166107",
+          "md5": "0c527f2a395f053cef08e76af9b6a873"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "automation_library-3.2.1-SNAPSHOT-sources.jar",
+          "url": "automation_library-3.2.1-SNAPSHOT-sources.jar",
+          "size": 508933,
+          "sha512": "e230d25b40602e8fe19999a20501c767c58683b14a6021dc33fe6785d9dc624d3c38b6614a0d01a83cedaaca3c1a3022109a1934b4898517c923164e70267d1c",
+          "sha256": "16ce4ec73229e69dda41d214a863cb3a44a5f40407693eb2e02edbad866767a2",
+          "sha1": "68731a2df3831a44ebdedd25e1fc7db71f8d4da8",
+          "md5": "1ca394e30a7670fb99ba76ba96b4c3a8"
+        }
+      ]
+    }
+  ]
+}
