@@ -5,6 +5,7 @@ import automationtestinstance.AutomationTestManager;
 import com.aventstack.extentreports.Status;
 import com.bottlerocket.remote.SauceExecutor;
 import com.bottlerocket.utils.Logger;
+import com.testRailManager.*;
 import config.TestDataManager;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestContext;
@@ -32,6 +33,8 @@ public class TestMain {
     //Note: Store run data in TDM that you can pass to your tests(Users, search params, orders, etc.).
     //This makes it easy to manage, switch with params, and manage state.
     boolean allMethodsPassed = false;
+
+    protected String testCaseId;
 
 
     @BeforeSuite(alwaysRun = true)
@@ -116,7 +119,15 @@ public class TestMain {
         }
 
         String screenshotName = "After Method";
-        am.userOp.takeScreenshot(screenshotName);
+        String fullScreenShotName = am.userOp.takeScreenshotWithFileName(screenshotName);
+
+        if(am.config.updateTestRail == true) {
+            if (testResult.getStatus() == ITestResult.FAILURE) {
+                TestRailManager.addResultsToTestCase(testCaseId, TestRailManager.testCaseFailStatus, "Test Failed: " + testResult.getTestName(), am.config.getProperty("SECRET_VAR_TESTRAIL_USERNAME"), am.config.getProperty("SECRET_VAR_TESTRAIL_PASSWORD"), fullScreenShotName);
+            } else if (testResult.getStatus() == ITestResult.SUCCESS) {
+                TestRailManager.addResultsToTestCase(testCaseId, TestRailManager.testCasePassStatus, "Test Passed: ", am.config.getProperty("SECRET_VAR_TESTRAIL_USERNAME"), am.config.getProperty("SECRET_VAR_TESTRAIL_PASSWORD"), fullScreenShotName);
+            }
+        }
 
         am.reporter.writeTestCoverageList(new File("testCoverageListOut.txt"));
         am.reporter.write();
