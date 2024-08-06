@@ -11,6 +11,7 @@ import config.*;
 import io.appium.java_client.service.local.*;
 import operations.*;
 import operations.navops.*;
+import java.util.*;
 
 public class AutomationTestManager {
     public DeviceAutomationComponents deviceAutomationComponents;
@@ -22,6 +23,8 @@ public class AutomationTestManager {
     public AutomationReporter reporter;
     public AppiumDriverLocalService appiumService;
     public WebDriverWrapper driverWrapper;
+    public List<String> stepList;
+    public Steps steps;
 
 
     /**
@@ -33,6 +36,8 @@ public class AutomationTestManager {
         userOp.init(this);
         navOp.init(this);
         assertions.init(this);
+        steps = new Steps(this);
+        stepList = new ArrayList<>();
     }
 }
 

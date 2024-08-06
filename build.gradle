@@ -130,4 +130,9 @@ dependencies {
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.2.2'
     // https://mvnrepository.com/artifact/com.relevantcodes/extentreports
     implementation group: 'com.aventstack', name: 'extentreports', version: '4.0.5'
+
+    // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
+
 }
