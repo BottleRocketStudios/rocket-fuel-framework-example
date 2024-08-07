@@ -70,7 +70,7 @@ public class TestMain {
     /**
      * Run before each class
      **/
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setUpMain(ITestContext context) {
         if (runByClassOrMethod) {
             try {
@@ -123,7 +123,7 @@ public class TestMain {
 
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void after() {
         if (runByClassOrMethod) {
             SauceExecutor sauceExecutor = new SauceExecutor(am.config.remote);

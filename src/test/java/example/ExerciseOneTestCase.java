@@ -3,7 +3,6 @@ package example;
 import example.assertions.AssertionPayload;
 import example.assertions.AssertionCategories;
 import example.testmain.TestMainExample;
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 /**
@@ -32,8 +31,24 @@ public class ExerciseOneTestCase extends TestMainExample {
      * We also use navOps (Navigation Operations) to navigate to the Sauce Demo page and click the login button.
      * Finally, we use assertions to verify that the error message pops up under a failed login.
      */
-    @Test
+    @Test(groups="smoke", description = "verify that a user with no credentials will see an error message when they try to log in")
     public void exerciseOne() {
+        am.navOp.goToURL("https://www.saucedemo.com");
+
+        // Grab the URL currently being displayed in active session and store into a variable and print in the report
+        String sauceDemoURL = am.driverWrapper.getCurrentURL();
+        am.userOp.addInfoToReport("The current URL is " + sauceDemoURL);
+        am.userOp.takeScreenshot("sauce_demo_page");
+
+        am.navOp.login.clickLogin();
+
+        // Verify we can't log in with no credentials and error message shows
+        am.assertions.generalAssertion(new AssertionPayload(am.navOp.isErrorVisible(), "Verify error message pops up under failed login",
+                AssertionCategories.Login));
+    }
+
+    @Test(groups="smoke", description = "verify that a user with no credentials will see an error message when they try to log in")
+    public void exerciseOneTest2() {
         am.navOp.goToURL("https://www.saucedemo.com");
 
         // Grab the URL currently being displayed in active session and store into a variable and print in the report

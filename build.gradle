@@ -114,6 +114,18 @@ static def getDate() {
     return month + "/" + day
 }
 
+task runTests(type: JavaExec, dependsOn: 'classes') {
+    String groups = System.properties.get("groups")
+    main = 'org.testng.TestNG'
+    classpath = files("./src/test",
+            project.sourceSets.main.compileClasspath,
+            project.sourceSets.test.compileClasspath,
+            project.sourceSets.main.runtimeClasspath,
+            project.sourceSets.test.runtimeClasspath)
+
+    args = ["-parallel", "classes", "-threadcount", "10", "-groups", "${groups}", "-d", "./build/test-output", "./src/test/classes-test-testng.xml"]
+}
+
 
 dependencies {
     implementation 'org.testng:testng:7.7.0'
