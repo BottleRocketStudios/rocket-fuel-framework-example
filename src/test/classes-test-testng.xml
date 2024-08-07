@@ -1,0 +1,31 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<!-- <set suite name, execution strategy, thread count>-->
+<!--The following parameters allow testNG to run the tests in parallel by classes with a max count of 10 (these values can be changed)-->
+<suite name="Rocket Fuel Framework Example" parallel="classes" thread-count="10">
+    <!-- point testng xml to correct RetryAnalyzer-->
+    <listeners>
+        <listener class-name="retryutils.RetryListener"/>
+    </listeners>
+
+        <test name="UITests">
+            <groups>
+                <run>
+<!--                        USE TO FILTER SPECIFIC TESTS BY GROUP -->
+<!--                    If both includes are left commented out, all tests in the below classes will run, -->
+<!--                    you can include or exclude test methods by using the desired group name-->
+<!--                    In the following example all tests that have the "smoke" group annotation will be executed if -->
+<!--                    the include is uncommented-->
+<!--                        <include name="smoke"/>-->
+<!--                        <exclude name="regression"/>-->
+                </run>
+            </groups>
+            <classes>
+                <class name = "example.ExerciseOneTestCase"/>
+                <class name = "example.ExerciseTwoTestCase"/>
+                <class name = "automationtests.testingautomationtests.ResourceLocatorExamplesTest"/>
+
+            </classes>
+        </test>
+
+</suite>

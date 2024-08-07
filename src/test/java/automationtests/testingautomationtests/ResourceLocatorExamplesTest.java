@@ -17,7 +17,7 @@ public class ResourceLocatorExamplesTest extends TestMain {
     INPUT_TEXT_BOX_GOOGLE_SEARCH: By from ResourceLocatorBundle
     INPUT_BUTTON_GOOGLE_SEARCH: By from UIElementLocator
      */
-    @Test()
+    @Test(groups={"smoke","regression"})
     public void resourceLocatorExamples() throws MalformedURLException {
 
         URL url = new URL(URL_GOOGLE);

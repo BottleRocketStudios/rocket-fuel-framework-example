@@ -20,6 +20,7 @@ that [here](https://github.com/BottleRocketStudios/rocket-fuel-framework/blob/ma
 - [Running Your Tests](#running-your-tests)
     - [Using an IDE](#using-an-ide)
     - [Using the gradle wrapper](#using-the-gradle-wrapper)
+    - [Using TestNG .xml](#Using-the-testNG-xml)
 - [Automation Test Suite Structure and Modularity](#automation-test-suite-structure-and-modularity)
     - [Project Structure](#project-structure)
     - [Test Layer](#test-layer)
@@ -329,6 +330,56 @@ There are several other ways to filter test runs including by individual test cl
 there are also several other parameters that can be passed to your gradle run such as running in parallel and ignoring
 failures. More information on running gradle tests for JVM projects can be
 found [here]https://docs.gradle.org/current/userguide/java_testing.html).
+
+### Using the testNG xml
+
+Manage test execution with TestNG allows us to quickly run all tests by just right-clicking on the 
+classes-test-testng.xml and selecting run. TestNG also allows user the ability to easily manage test groups via the 
+groups annotation. TestNG also gives users the ability to easily run tests in parallel.
+
+In order to start using the TestNG.xml its important to that the .xml should be located somewhere in the projects test
+folder. In this project the .xml in the root directory of the test folder.
+
+```
+Project package
+│
+└───src
+    └───test
+        └───java
+        └───classes-test-testng.xml
+        
+```
+
+In order to filter your tests simple either include or exclude test methods that you want to run by including them in
+the includes/excludes statements in the classes-test-testng.xml
+```
+    <include name="smoke"/>
+    <exclude name="regression"/>
+```    
+
+Another benefit of using the TestNG .xml is that running tests in parallel becomes even easier. Tests can be executed in 
+a variety ways, for example tests can be run by classes or test methods. The example in this project has tests
+running in parallel by classes with 10 threads defined in the classes-test-testng.xml so each class will be run on its 
+own thread up to a maximum of 10 (which can customized at the top of the .xml to use more threads) 
+
+```
+    <suite name="Rocket Fuel Framework Example" parallel="classes" thread-count="10">
+```
+
+The TestNG .xml can also be executed from the command line using the gradle runTests task which is located in the 
+build.gradle file which is necessary to be able to trigger jobs remotely and from CI/CD pipelines. Simple execute the 
+gradle task on the command line with any desired group parameters (which is required). 
+Leaving the groups parameters blank will execute all tests. 
+For example the following command will run all tests in the .xml
+```
+    ./gradle runTests -Dgroups=
+```
+And similarly executing the command with a non-empty groups parameter will execute all tests annotated with the that
+group, for example the following command will execute all tests with the "smoke" groups annotation
+```
+./gradle runTests -Dgroups=smoke
+```
+
 
 ## Automation Test Suite Structure and Modularity
 
