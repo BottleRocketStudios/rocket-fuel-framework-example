@@ -68,7 +68,7 @@ public class TestMainExample {
     /**
      * Run before each class
      **/
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setUpMain(ITestContext context) {
         if (runByClassOrMethod) {
             try {
@@ -117,7 +117,7 @@ public class TestMainExample {
 
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void after() {
         if (am.driverWrapper.notNull()) {
             Logger.log("Shutting down driver wrapper.");
@@ -128,7 +128,7 @@ public class TestMainExample {
         }
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void tearDownFinal() {
         if (am != null && am.reporter != null) {
             am.reporter.close();

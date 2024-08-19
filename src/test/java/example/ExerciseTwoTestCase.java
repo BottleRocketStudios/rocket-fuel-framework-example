@@ -21,7 +21,7 @@ public class ExerciseTwoTestCase extends TestMainExample {
      * simply change the inputs to your TestDataManger constructor in your base test class. Of course, you can
      * also use a different user per test class if you that works better for your use case.
      */
-    @Test
+    @Test(groups={"regression"}, description = "Verify user with valid credentials can log in")
     public void exerciseTwo() {
         //This is the test data manager. See method documentation for more information.
         User sauceUser = testDataManager.activeUser;
