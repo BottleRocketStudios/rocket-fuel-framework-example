@@ -14,21 +14,13 @@ targetCompatibility = 15
 
 repositories {
     mavenCentral()
-    maven {
-        url "file://Volumes/Builds/qa/automation/maven-repository/snapshots"
-    }
-    maven {
-        url "file://Volumes/Builds/qa/automation/maven-repository/releases"
-    }
+
     //To get the framework grab it from the server and stick it in your ~/.m2 (make sure to put it in the appropriate folder with the correct structure)
     //Or more easily, run the gradle task in the framework publishAutomationLibraryPublicationToMavenLocal
     mavenLocal()
     //This is another option to use for local maven, uncomment below. This will take the framework from whatever folder you want to put it in.
     //maven { url "path to maven repo" }
 
-//    flatDir {
-//        dirs "file://${projectDir}/framework_snapshots/"
-//    }
     maven { url "file://${projectDir}/framework_snapshots/" }
 
 }
@@ -131,8 +123,8 @@ dependencies {
     implementation 'org.testng:testng:7.7.0'
 
     //active development framework
-    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.1-SNAPSHOT'
-    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.1-SNAPSHOT-sources'
+    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.3-SNAPSHOT'
+    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.3-SNAPSHOT-sources'
 
     //stable release framework
     //implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '2.2-RELEASE'
