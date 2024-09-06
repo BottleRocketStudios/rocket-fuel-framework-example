@@ -47,11 +47,11 @@ public class AutomationTestInitializer {
         //Example to set a capability based on parameters used to start the test
 //        testDataManager.setEnvCapabilities(capabilities, testDataManager.getCurrentEnvType(), testDataManager.getCurrentLocale());
 
-        if (config.isAndroid()) {
+        if (config.platFormTypeIsAndroid()) {
             initializeAndroidSystem(am);
-        } else if (config.isIos()) {
+        } else if (config.platFormTypeIsIos()) {
             initializeIosSystem(am);
-        } else if (config.isWeb()) {
+        } else if (config.platFormTypeIsWeb()) {
             initializeSeleniumSystem(am);
         } else {
             throw new Error("Operating system not recognized, check config files");
@@ -143,11 +143,11 @@ public class AutomationTestInitializer {
     private void setupFirst(AutomationTestManager testManager) throws Exception {
         DeviceAutomationComponents device;
         //Set iOS or Android here
-        if (testManager.config.isAndroid()) {
+        if (testManager.config.platFormTypeIsAndroid()) {
             device = new AndroidAutomationComponents();
-        } else if (testManager.config.isIos()) {
+        } else if (testManager.config.platFormTypeIsIos()) {
             device = new IosAutomationComponents();
-        } else if (testManager.config.isWeb()) {
+        } else if (testManager.config.platFormTypeIsWeb()) {
             device = new WebAutomationComponents();
         } else {
             throw new Exception("Platform not recognized");

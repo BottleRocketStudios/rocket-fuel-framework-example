@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.bottlerocket.automation</groupId>
   <artifactId>automation_library</artifactId>
-  <version>3.2.1-SNAPSHOT</version>
+  <version>3.2.3-SNAPSHOT</version>
   <developers>
     <developer>
       <id>FordArnett</id>

@@ -19,7 +19,7 @@ public class GherkinTest extends TestMain {
 
         am.steps.I_click_the___key_on_element___("Enter", INPUT_TEXT_BOX_GOOGLE_SEARCH);
 
-        am.steps.I_assert_Url_contains_text___("boxing+schedule1`   ");
+        am.steps.I_assert_Url_contains_text___("boxing+schedule");
 
         am.steps.printSteps();
     }
