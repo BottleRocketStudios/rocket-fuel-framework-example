@@ -17,7 +17,7 @@ repositories {
 
     //To get the framework grab it from the server and stick it in your ~/.m2 (make sure to put it in the appropriate folder with the correct structure)
     //Or more easily, run the gradle task in the framework publishAutomationLibraryPublicationToMavenLocal
-    mavenLocal()
+//    mavenLocal()
     //This is another option to use for local maven, uncomment below. This will take the framework from whatever folder you want to put it in.
     //maven { url "path to maven repo" }
 
@@ -123,8 +123,8 @@ dependencies {
     implementation 'org.testng:testng:7.7.0'
 
     //active development framework
-    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.3-SNAPSHOT'
-    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.3-SNAPSHOT-sources'
+    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.4-SNAPSHOT'
+    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.4-SNAPSHOT-sources'
 
     //stable release framework
     //implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '2.2-RELEASE'

@@ -7,7 +7,7 @@ import static config.ResourceLocator.*;
 
 public class GherkinTest extends TestMain {
 
-    @Test
+    @Test(groups="demoTest")
     public void Test1() {
         testCaseId = "2931803";
 

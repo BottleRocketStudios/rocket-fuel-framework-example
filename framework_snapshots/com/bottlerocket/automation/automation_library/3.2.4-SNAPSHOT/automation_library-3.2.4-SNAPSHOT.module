@@ -3,7 +3,7 @@
   "component": {
     "group": "com.bottlerocket.automation",
     "module": "automation_library",
-    "version": "3.2.3-SNAPSHOT",
+    "version": "3.2.4-SNAPSHOT",
     "attributes": {
       "org.gradle.status": "integration"
     }
@@ -11,7 +11,7 @@
   "createdBy": {
     "gradle": {
       "version": "6.7.1",
-      "buildId": "5qx5c7wcrbhizex4wqajj7u3lu"
+      "buildId": "vchc67yoczge7jgjfehewqdyoy"
     }
   },
   "variants": [
@@ -26,13 +26,13 @@
       },
       "files": [
         {
-          "name": "automation_library-3.2.3-SNAPSHOT.jar",
-          "url": "automation_library-3.2.3-SNAPSHOT.jar",
-          "size": 478565,
-          "sha512": "04601156e8a52e4bf83e8d5ab658bd37dcd15a05d527c66a6b2f9ed176dd2151aba11fe0bf02be2772e1481c25454cc06f353097ef13300e7a1c533441d3c114",
-          "sha256": "f39b0a10e11bb5265e0673a91514efc0a8f6d41249ceca7a22ff672afa3b59cb",
-          "sha1": "80ccda8454f8b1eb8cdfe8738c963da3b2b7d488",
-          "md5": "0f03d91c8eab20d8105082be9363ffc4"
+          "name": "automation_library-3.2.4-SNAPSHOT.jar",
+          "url": "automation_library-3.2.4-SNAPSHOT.jar",
+          "size": 478597,
+          "sha512": "4dfecb15b8fcbdcba86ee98506d63e6744a846500422f3012cda05544e588a4e8ed8b541046173ab976fb8529cccabf8c5ad84f061b5eb1deeaf522e5f87199e",
+          "sha256": "f853ecda1aa5592baaf8825d71358a23ce0af13c9e5a2a6bc3c05bf2fb2198d1",
+          "sha1": "e2d87131a9f3572dc2e5579e23a3b9be91fa3183",
+          "md5": "ed0f2513088f8e5570bd7721881ee189"
         }
       ]
     },
@@ -189,13 +189,13 @@
       ],
       "files": [
         {
-          "name": "automation_library-3.2.3-SNAPSHOT.jar",
-          "url": "automation_library-3.2.3-SNAPSHOT.jar",
-          "size": 478565,
-          "sha512": "04601156e8a52e4bf83e8d5ab658bd37dcd15a05d527c66a6b2f9ed176dd2151aba11fe0bf02be2772e1481c25454cc06f353097ef13300e7a1c533441d3c114",
-          "sha256": "f39b0a10e11bb5265e0673a91514efc0a8f6d41249ceca7a22ff672afa3b59cb",
-          "sha1": "80ccda8454f8b1eb8cdfe8738c963da3b2b7d488",
-          "md5": "0f03d91c8eab20d8105082be9363ffc4"
+          "name": "automation_library-3.2.4-SNAPSHOT.jar",
+          "url": "automation_library-3.2.4-SNAPSHOT.jar",
+          "size": 478597,
+          "sha512": "4dfecb15b8fcbdcba86ee98506d63e6744a846500422f3012cda05544e588a4e8ed8b541046173ab976fb8529cccabf8c5ad84f061b5eb1deeaf522e5f87199e",
+          "sha256": "f853ecda1aa5592baaf8825d71358a23ce0af13c9e5a2a6bc3c05bf2fb2198d1",
+          "sha1": "e2d87131a9f3572dc2e5579e23a3b9be91fa3183",
+          "md5": "ed0f2513088f8e5570bd7721881ee189"
         }
       ]
     },
@@ -209,13 +209,13 @@
       },
       "files": [
         {
-          "name": "automation_library-3.2.3-SNAPSHOT-sources.jar",
-          "url": "automation_library-3.2.3-SNAPSHOT-sources.jar",
-          "size": 508822,
-          "sha512": "819de5e201af1dbbf72d7f90d5cd89580db1f14c13e3264656dd61221e3d531dfe19dec553a926885f0b3ac0d37c96c0bcb59e1ee1e59af4d1c618dd1974ffaa",
-          "sha256": "75e8db92495d6b6f1a41f8a4974e5e1c3255e4192c2243756aee708cb16a5aa9",
-          "sha1": "fe090373f53ab1def31c890d5c1f224666661db7",
-          "md5": "ec8b9d991e980cba5db38fee9c76397a"
+          "name": "automation_library-3.2.4-SNAPSHOT-sources.jar",
+          "url": "automation_library-3.2.4-SNAPSHOT-sources.jar",
+          "size": 508882,
+          "sha512": "e8c3259973200de2534dc9ce095bab9c9a8472e57c4d9ce5604853431fa5fedef2b6557ce0dbe837d9264376f5732e6e3bca2368dacff92816c3f8182baae452",
+          "sha256": "b51696a112cb0d32fdfdb21d55eff1ed4f62983c10552dcbf0e52cb65bd223ab",
+          "sha1": "e5a53a0e676288f7292c7673f34b4451317b617f",
+          "md5": "2c8badfeb48e10fc3a35c66ce28d4283"
         }
       ]
     }
