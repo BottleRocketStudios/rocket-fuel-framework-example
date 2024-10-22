@@ -24,6 +24,7 @@
                 <class name = "example.ExerciseOneTestCase"/>
                 <class name = "example.ExerciseTwoTestCase"/>
                 <class name = "automationtests.testingautomationtests.ResourceLocatorExamplesTest"/>
+                <class name = "automationtests.testingautomationtests.GherkinTest"/>
 
             </classes>
         </test>

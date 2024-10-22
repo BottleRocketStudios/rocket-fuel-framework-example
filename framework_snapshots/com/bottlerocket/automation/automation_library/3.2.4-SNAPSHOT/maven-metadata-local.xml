@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.bottlerocket.automation</groupId>
+  <artifactId>automation_library</artifactId>
+  <version>3.2.4-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <localCopy>true</localCopy>
+    </snapshot>
+    <lastUpdated>20241021215345</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <classifier>sources</classifier>
+        <extension>jar</extension>
+        <value>3.2.4-SNAPSHOT</value>
+        <updated>20241021215345</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>3.2.4-SNAPSHOT</value>
+        <updated>20241021215345</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>module</extension>
+        <value>3.2.4-SNAPSHOT</value>
+        <updated>20241021215345</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>3.2.4-SNAPSHOT</value>
+        <updated>20241021215345</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
