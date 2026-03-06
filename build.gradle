@@ -123,8 +123,8 @@ dependencies {
     implementation 'org.testng:testng:7.7.0'
 
     //active development framework
-    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.3-SNAPSHOT'
-    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.3-SNAPSHOT-sources'
+    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.4-SNAPSHOT'
+    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.4-SNAPSHOT-sources'
 
     //stable release framework
     //implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '2.2-RELEASE'
