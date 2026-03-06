@@ -21,7 +21,7 @@ repositories {
     //This is another option to use for local maven, uncomment below. This will take the framework from whatever folder you want to put it in.
     //maven { url "path to maven repo" }
 
-    maven { url "file://${projectDir}/framework_snapshots/" }
+//    maven { url "file://${projectDir}/framework_snapshots/" }
 
 }
 
