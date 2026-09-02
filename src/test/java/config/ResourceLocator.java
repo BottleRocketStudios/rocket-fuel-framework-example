@@ -38,8 +38,17 @@ public class ResourceLocator {
     public static final ResourceLocatorBundle SAUCE_LOGIN_USERNAME = ResourceLocatorBundle.build(By.id("user-name"));
     public static final ResourceLocatorBundle SAUCE_LOGIN_PASSWORD = ResourceLocatorBundle.build(By.id("password"));
 
-    //iOS Settings app - used by IosSettingsSmokeTest to verify the iOS stack with no app build
-    public static final ResourceLocatorBundle IOS_SETTINGS_GENERAL_ROW = buildAccessibilityIdRLB("General");
+    /*
+     * Stock Settings app on each platform, used by SettingsSmokeTest to verify the mobile stack
+     * with no app build. Note the two platforms need genuinely different locator strategies for
+     * the same idea of "the Settings root screen is up" - which is exactly what a
+     * ResourceLocatorBundle is for. iOS exposes an accessibility id on the General row; Android
+     * has no such row, so we key off the homepage container's resource-id, which has the bonus of
+     * being locale independent.
+     */
+    public static final ResourceLocatorBundle SETTINGS_ROOT_MARKER = ResourceLocatorBundle.build(
+            new AppiumBy.ByAccessibilityId("General"),
+            By.id("com.android.settings:id/settings_homepage_container"));
 
     //Inventory page
     public static final ResourceLocatorBundle SAUCE_INVENTORY_INVENTORY_CONTAINER = ResourceLocatorBundle.build(By.id("inventory_container"));
