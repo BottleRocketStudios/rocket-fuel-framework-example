@@ -38,6 +38,9 @@ public class ResourceLocator {
     public static final ResourceLocatorBundle SAUCE_LOGIN_USERNAME = ResourceLocatorBundle.build(By.id("user-name"));
     public static final ResourceLocatorBundle SAUCE_LOGIN_PASSWORD = ResourceLocatorBundle.build(By.id("password"));
 
+    //iOS Settings app - used by IosSettingsSmokeTest to verify the iOS stack with no app build
+    public static final ResourceLocatorBundle IOS_SETTINGS_GENERAL_ROW = buildAccessibilityIdRLB("General");
+
     //Inventory page
     public static final ResourceLocatorBundle SAUCE_INVENTORY_INVENTORY_CONTAINER = ResourceLocatorBundle.build(By.id("inventory_container"));
     public static final ResourceLocatorBundle SAUCE_INVENTORY_BIKE_LIGHT = ResourceLocatorBundle.build(By.xpath("(//img[@alt='Sauce Labs Bike Light'])"));

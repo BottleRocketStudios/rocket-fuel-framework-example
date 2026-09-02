@@ -5,7 +5,8 @@ package automationtests.assertions;
  */
 public enum AssertionCategories {
     CategoryOne("CatOne"),
-    CategoryTwo("CatTwo");
+    CategoryTwo("CatTwo"),
+    IosSmoke("iOS Smoke");
 
 
     private String category;

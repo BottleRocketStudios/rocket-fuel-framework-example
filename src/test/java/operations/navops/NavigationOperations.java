@@ -2,6 +2,7 @@ package operations.navops;
 
 
 import automationtestinstance.AutomationTestManager;
+import com.bottlerocket.config.ResourceLocatorBundle;
 import operations.TestInitializerListener;
 
 
@@ -21,6 +22,14 @@ public abstract class NavigationOperations implements TestInitializerListener {
 
         //init nav classes here
 
+    }
+
+    /**
+     * Verify an element described by a {@link ResourceLocatorBundle} is present on the current screen.
+     * The bundle resolves to the right locator for whichever platform the run is on.
+     */
+    public boolean verifyContentIsPresentBy(ResourceLocatorBundle rlb) {
+        return am.driverWrapper.elementExists(rlb.getBy());
     }
 
 }
