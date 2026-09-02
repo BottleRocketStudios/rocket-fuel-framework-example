@@ -21,7 +21,9 @@ repositories {
         url "file://Volumes/Builds/qa/automation/maven-repository/releases"
     }
     //To get the framework grab it from the server and stick it in your ~/.m2 (make sure to put it in the appropriate folder with the correct structure)
-    //Or more easily, run the gradle task in the framework publishAutomationLibraryPublicationToMavenLocal
+    //Or more easily, run publishToMavenLocal in the framework repo. (The publication is named
+    //`maven`, so the specific task is publishMavenPublicationToMavenLocal - there is no
+    //publishAutomationLibraryPublicationToMavenLocal task, despite what older docs claimed.)
     mavenLocal()
     //This is another option to use for local maven, uncomment below. This will take the framework from whatever folder you want to put it in.
     //maven { url "path to maven repo" }

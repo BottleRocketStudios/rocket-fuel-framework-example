@@ -9,6 +9,7 @@ that [here](https://github.com/BottleRocketStudios/rocket-fuel-framework/blob/ma
 - [What is the Rocket Fuel Framework?](#what-is-the-rocket-fuel-framework)
 - [Getting Started](#getting-started)
 - [Sounds Great! But How Do I Dive in?](#sounds-great-but-how-do-i-dive-in)
+    - [Before you run anything: build the engine](#before-you-run-anything-build-the-engine)
 - [Lifting off (Getting your first run)](#lifting-off-getting-your-first-run)
     - [Practice with an Example Test](#practice-with-an-example-test)
         - [Creating Your Own Test](#creating-your-own-test)
@@ -124,19 +125,46 @@ If you want the quickest path to seeing something work end to end,
 opt for a web test first. It's the easiest to set up and run, and you can see the results in your browser without
 needing any of the Appium setup.
 
+### Before you run anything: build the engine
+
+The RFF is two repos, and this one does not contain the engine. Nothing here will build until the
+`automation_library` jar exists somewhere Gradle can see it. It is **not** published to Maven Central, and
+the internal Synology repo referenced in `build.gradle` is not reachable from outside Bottle Rocket. So:
+
+```bash
+git clone https://github.com/BottleRocketStudios/rocket-fuel-framework.git
+cd rocket-fuel-framework
+./gradlew publishToMavenLocal
+```
+
+That installs the jar into `~/.m2`, which this project picks up via `mavenLocal()`. Make sure the version in
+[build.gradle](build.gradle) matches the version the framework repo just published - a mismatch shows up as an
+unresolved dependency, not a helpful message.
+
+You will also need a **JDK 17** on `JAVA_HOME`. Both repos pin the Gradle wrapper to 7.6.4, which is the newest
+Gradle that runs on JDK 17 while still accepting the deprecated `archivesBaseName`/`baseName` properties these
+builds use. Those were removed in Gradle 8, so moving to 8.x means porting them first.
+
 To get started we are going to go over to [resource](src/main/resources) and update the properties files to use
 your values. The appconfig.properties should be on web, so for this intro that's perfect. You'll then want to hop over
 to [web_config](src/main/resources/web_config.properties)
 to update the location you want your reports to go to. You can also update the browser you want to use in the
 web_config.properties file.
 You will need to have the corresponding driver for the browser you are using, assuming it is not included with the
-browser itself.
-You'll be able to find the driver easy enough online, just make sure it matches your environment OS. From there you
+browser itself. The framework does **not** use Selenium Manager - it loads `drivers/<chromedriver|geckodriver>`
+from this project directly - so that binary has to be right. It must match both your OS/architecture (Apple
+Silicon needs an arm64 build) **and your browser's major version**; a driver even one major behind fails with
+`session not created`. Current Chrome drivers come from
+[Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/). Any driver committed to this repo
+will go stale as browsers auto-update, so expect to refresh it periodically. From there you
 should be able to run the
 tests in [QuickTest](src/test/java/automationtests/testingautomationtests/QuickTest.java). This should verify your
 environment is set correctly.
-Note some of the tests will 'fail' as they are meant to, but you should see the reports generated in the location you
-specified in the web_config.properties file.
+Note some of the tests will 'fail' as they are meant to, but you should see the reports generated.
+Be aware the two run styles currently disagree about *where*: running from your IDE honours
+`TEST_OUTPUT_DIRECTORY` in web_config.properties, while running through Gradle overrides it with the
+`uniquefolder` system property set in [build.gradle](build.gradle), which writes to
+`../automation_test_results/` - a sibling of this project, outside the repo.
 If your test launched a browser, and you saw some tests run, you are good to go! If not, feel free to reach out to us,
 and we can help you troubleshoot.
 
@@ -706,7 +734,7 @@ dive in yourself and see!
 
 TLDR:
 
-- Java 15 or higher
+- JDK 17 (the builds target source/target 15, but the Gradle 7.6.4 wrapper needs 17 to run)
 - IntelliJ IDEA (recommended)
 - Mac, Linux, or Windows (Mostly used on Mac but shouldn't be an issues on other systems)
 - One or more of the following depending on what you are testing:
@@ -727,8 +755,10 @@ be issues
 that we haven't seen before. If you are using something other than Mac, please reach out to us if you run into any
 issues.
 
-Outside of that, you will need Java on your system. Newer versions of Java are recommended, but the framework should
-work on anything 15 or higher.
+Outside of that, you will need Java on your system. Use **JDK 17**: the source/target level is 15, but the
+Gradle wrapper both repos pin (7.6.4) will not run on a JDK newer than 19, and the Gradle versions that
+supported JDK 15 are too old to run on anything current. JDK 17 is the sweet spot until the builds are ported
+off the archive properties Gradle 8 removed.
 
 We highly recommend you use IntelliJ IDEA as your IDE, as it is the IDE that we have used to develop the framework,
 and in our opinion it is an easy-to-use IDE with industry leading features. Of course, you are free to use any IDE that
