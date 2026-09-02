@@ -6,3 +6,8 @@ build/
 .idea/
 target/
 *.DS_Store
+# local secrets (template is secrets.properties.example)
+src/main/resources/secrets.properties
+
+# local driver backups (originals recoverable from git history)
+drivers/*.bak

@@ -34,7 +34,7 @@ repositories {
 
 ext {
     //TODO Change to value in appconfig.properties
-    projectName = "DEFINE_PROJECT_NAME_HERE_MAKE_IT_MATCH_APPCONFIG_PROPERTIES"
+    projectName = "rocket_fuel_example"
 }
 
 test {
@@ -118,8 +118,7 @@ dependencies {
     implementation 'org.testng:testng:7.7.0'
 
     //active development framework
-    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.0-SNAPSHOT'
-    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.0-SNAPSHOT-sources'
+    implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '3.2.3-SNAPSHOT'
 
     //stable release framework
     //implementation group: 'com.bottlerocket.automation', name: 'automation_library', version: '2.2-RELEASE'
